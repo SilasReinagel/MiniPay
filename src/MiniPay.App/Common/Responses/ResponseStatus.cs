@@ -1,0 +1,15 @@
+﻿
+namespace MiniPay
+{
+    public enum ResponseStatus
+    {
+        AStupidDeveloperForgotToSpecify,
+        Errored,
+        Succeeded,
+        BadRequest,
+        DependencyFailure,
+        InvalidState,
+        UnknownEntity,
+        Unauthorized,
+    }
+}

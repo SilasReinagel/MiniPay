@@ -1,0 +1,48 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace MiniPay
+{
+    public static class EnumerableExtensions
+    {
+        public static void ForEach<T>(this IEnumerable<T> items, Action<T> action)
+        {
+            items.ToList().ForEach(action);
+        }
+
+        public static bool None<T>(this IEnumerable<T> items)
+        {
+            return !items.Any();
+        }
+
+        public static T LastOrDefault<T>(this IEnumerable<T> items, T defaultValue)
+        {
+            return items.Any() 
+                ? items.Last() 
+                : defaultValue;
+        }
+
+        public static IEnumerable<T> Finalize<T>(this IEnumerable<T> items)
+        {
+            return items.ToList();
+        }
+
+        public static IEnumerable<T> Copy<T>(this IEnumerable<T> items)
+        {
+            return items.ToList();
+        }
+
+        public static Maybe<T> SingleAsMaybe<T>(this IEnumerable<T> items)
+        {
+            return items.Count() == 0
+                ? Maybe<T>.Missing
+                : items.Single();
+        }
+
+        public static HashSet<T> ToHashSet<T>(this IEnumerable<T> items)
+        {
+            return new HashSet<T>(items);
+        }
+    }
+}
